@@ -24,15 +24,18 @@ for item in root.iter("item"):
     for discovery in episode_description_root.xpath(".//a"):
         # Get discovery description
         r = requests.get(discovery.get("href"))
-        description_root = html.fromstring(r.text)
-        discovery_description = description_root.xpath("//p")
-        if len(discovery_description) > 0:
-            for paragraph in discovery_description:
-                desc = "".join(paragraph.xpath(".//text()"))
-                if desc.strip() != "":
-                    break
-            discovery_description = desc
-        else:
+        try:
+            description_root = html.fromstring(r.text)
+            discovery_description = description_root.xpath("//p")
+            if len(discovery_description) > 0:
+                for paragraph in discovery_description:
+                    desc = "".join(paragraph.xpath(".//text()"))
+                    if desc.strip() != "":
+                        break
+                discovery_description = desc
+            else:
+                discovery_description = ""
+        except:
             discovery_description = ""
 
         discoveries.append({
