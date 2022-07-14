@@ -41,4 +41,4 @@ for item in root.iter("item"):
             "url": discovery.get("href"),
             "description": discovery_description.strip()
         })
-        print(discoveries[-1]
+        print(discoveries[-1])
