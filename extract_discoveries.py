@@ -25,18 +25,25 @@ for item in root.iter("item"):
         # Get discovery description
         r = requests.get(discovery.get("href"))
         try:
-            description_root = html.fromstring(r.text)
-            discovery_description = description_root.xpath("//p")
-            if len(discovery_description) > 0:
-                for paragraph in discovery_description:
-                    desc = "".join(paragraph.xpath(".//text()"))
-                    if desc.strip() != "":
-                        break
-                discovery_description = desc
-            else:
+            r = requests.get(discovery.get("href"))
+
+            try:
+                print("Trying description")
+                description_root = html.fromstring(r.text)
+                discovery_description = description_root.xpath("//p")
+                if len(discovery_description) > 0:
+                    for paragraph in discovery_description:
+                        desc = "".join(paragraph.xpath(".//text()"))
+                        if desc.strip() != "":
+                            break
+                    discovery_description = desc
+                else:
+                    discovery_description = ""
+            except:
                 discovery_description = ""
+
         except:
-            discovery_description = ""
+            discovery_description = "💀 Dead link"
 
         discoveries.append({
             "episode": episode_info,
