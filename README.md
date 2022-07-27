@@ -11,4 +11,6 @@ Extracting the discoveries from the [Late Night Linux](https://latenightlinux.co
 
 ## Usage
 1. Install the requirements `pip install -r requirements.txt`
-2. Run `extract_discoveries.py`
+2. Run `extract_discoveries.py`. This will create a `data.json` file containing all the discoveries.
+
+For a fancy webpage built around this data, see [davidbenque/lnl-disco](https://github.com/davidbenque/lnl-disco).
